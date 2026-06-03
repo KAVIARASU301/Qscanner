@@ -12,6 +12,7 @@ Contains reusable components that the main window composes:
 from __future__ import annotations
 
 import logging
+import numbers
 import re
 from datetime import date, datetime
 from pathlib import Path
@@ -99,15 +100,15 @@ class IndicatorRow(QWidget):
     # is enforced in __init__ so only one of {Filter, Display Only}
     # can be on at a time per row.
     _DISPLAY_ONLY_STYLE = """
-        QCheckBox { color: #aaa; }
+        QCheckBox { color: #a8bcd4; }
         QCheckBox::indicator {
-            width: 14px; height: 14px;
-            border: 1px solid #555; border-radius: 2px;
-            background: #3c3c3c;
+            width: 13px; height: 13px;
+            border: 1px solid #1a2030; border-radius: 2px;
+            background: #050709;
         }
         QCheckBox::indicator:checked {
-            background: #c0392b;
-            border: 1px solid #962d22;
+            background: #ff4d6a;
+            border: 1px solid #ff4d6a;
         }
     """
     # Threshold-input style applied while a row is in Display Only
@@ -115,7 +116,7 @@ class IndicatorRow(QWidget):
     # state on the dark theme that's easy to misread. Explicit muted
     # foreground + dimmed background makes the state unambiguous.
     _GREYED_INPUT_STYLE = (
-        "color: #666; background: #2a2a2a; border: 1px solid #3a3a3a;"
+        "color: #2a3a50; background: #0a0d12; border: 1px solid #1a2030;"
     )
 
     def __init__(self, label: str, params: list[dict], parent=None,
@@ -151,7 +152,7 @@ class IndicatorRow(QWidget):
 
         lbl = QLabel(label)
         lbl.setMinimumWidth(180)
-        lbl.setFont(QFont("Segoe UI", 9, QFont.Weight.Bold))
+        lbl.setFont(QFont("Aptos", 9, QFont.Weight.Bold))
 
         self.spinboxes: dict[str, QDoubleSpinBox | QSpinBox | QCheckBox] = {}
         # Display-only checkbox lives outside `spinboxes` so it's
@@ -194,7 +195,7 @@ class IndicatorRow(QWidget):
             if p["type"] == "checkbox":
                 cb = QCheckBox(p["label"])
                 cb.setChecked(p.get("default", True))
-                cb.setStyleSheet("color: #ccc;")
+                cb.setStyleSheet("color: #a8bcd4;")
                 self.spinboxes[p["name"]] = cb
                 layout.addWidget(cb)
                 continue
@@ -203,7 +204,7 @@ class IndicatorRow(QWidget):
                 # `choices` is list[(value, display_label)]; the stored
                 # value side is what set_value / value() round-trips.
                 plbl = QLabel(p["label"] + ":")
-                plbl.setStyleSheet("color: #888;")
+                plbl.setStyleSheet("color: #5a7090;")
                 layout.addWidget(plbl)
                 cb = QComboBox()
                 choices = p.get("choices", [])
@@ -221,7 +222,7 @@ class IndicatorRow(QWidget):
                 continue
 
             plbl = QLabel(p["label"] + ":")
-            plbl.setStyleSheet("color: #888;")
+            plbl.setStyleSheet("color: #5a7090;")
             layout.addWidget(plbl)
 
             if p["type"] == "int":
@@ -388,15 +389,15 @@ class IndicatorPanel(QScrollArea):
         col_header_layout = QHBoxLayout(col_header)
         col_header_layout.setContentsMargins(8, 0, 0, 0)
         col_header_layout.setSpacing(0)
-        small_font = QFont("Segoe UI", 7)
+        small_font = QFont("Aptos", 7)
         f_lbl = QLabel("Filter")
         f_lbl.setFont(small_font)
-        f_lbl.setStyleSheet("color: #888;")
+        f_lbl.setStyleSheet("color: #5a7090;")
         f_lbl.setFixedWidth(20)
         f_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
         d_lbl = QLabel("Display")
         d_lbl.setFont(small_font)
-        d_lbl.setStyleSheet("color: #c0392b;")
+        d_lbl.setStyleSheet("color: #ff4d6a;")
         d_lbl.setFixedWidth(28)
         d_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
         col_header_layout.addWidget(f_lbl)
@@ -769,8 +770,8 @@ class IndicatorPanel(QScrollArea):
 
     def _section(self, title: str):
         lbl = QLabel(f"  {title}")
-        lbl.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
-        lbl.setStyleSheet("color: #4a90d9; margin-top: 8px;")
+        lbl.setFont(QFont("Aptos", 10, QFont.Weight.Bold))
+        lbl.setStyleSheet("color: #00d4ff; margin-top: 8px; font-weight: 800;")
         self.vbox.addWidget(lbl)
 
     def _add(self, key: str, label: str, params: list[dict],
@@ -1912,7 +1913,7 @@ class ResultsTable(QTableView):
     """Sortable results table."""
 
     # Phase 8 §8.3: green text for cells inside a contiguous beat streak.
-    _STREAK_GREEN = QColor("#4caf50")
+    _STREAK_GREEN = QColor("#00d4a8")
     # Display-only "would-have-failed" color. Each cell whose key is
     # marked True in `row['_display_only_fails']` renders in this red
     # — the user's signal that the value, while shown for context,
@@ -1920,7 +1921,7 @@ class ResultsTable(QTableView):
     # to be unmistakable against both the dark-theme #1e1e1e
     # background and the alternating-row #252525, while remaining
     # distinct from the streak green and every alignment palette entry.
-    _FAIL_RED = QColor("#e74c3c")
+    _FAIL_RED = QColor("#ff4d6a")
     # Earnings-aligned date highlight palette. Curated 10-color set
     # restricted to the cool half of the wheel (cyan → teal → blue →
     # indigo → purple → violet) plus deliberate exclusions:
@@ -1932,7 +1933,7 @@ class ResultsTable(QTableView):
     # preferences. Within a row, distinct earnings dates each draw a
     # distinct entry via the per-match seeded picker in populate().
     _ALIGN_PALETTE = [
-        QColor("#4a90d9"),  # blue
+        QColor("#00d4ff"),  # cyan
         QColor("#26c6da"),  # cyan
         QColor("#00bcd4"),  # bright cyan
         QColor("#42a5f5"),  # light blue
@@ -2668,6 +2669,16 @@ class ResultsTable(QTableView):
                     except Exception:
                         pass
 
+            raw_for_alignment = item.data(Qt.ItemDataRole.UserRole)
+            if isinstance(raw_for_alignment, numbers.Real) and not isinstance(raw_for_alignment, bool):
+                item.setTextAlignment(
+                    Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter
+                )
+            else:
+                item.setTextAlignment(
+                    Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter
+                )
+
             item.setEditable(False)
             self.model_src.setItem(r, c, item)
 
@@ -2695,8 +2706,8 @@ class LogPanel(QWidget):
         super().__init__(parent)
         self.text = QTextEdit()
         self.text.setReadOnly(True)
-        self.text.setFont(QFont("Consolas", 9))
-        self.text.setStyleSheet("background: #1e1e1e; color: #d4d4d4;")
+        self.text.setFont(QFont("JetBrains Mono", 9))
+        self.text.setStyleSheet("background: #050709; color: #a8bcd4; border: 1px solid #1a2030; border-radius: 2px;")
 
         btn_clear = QPushButton("Clear")
         btn_clear.setFixedWidth(60)
@@ -2706,7 +2717,7 @@ class LogPanel(QWidget):
         self.btn_blacklist_errors.setFixedWidth(160)
         self.btn_blacklist_errors.setVisible(False)
         self.btn_blacklist_errors.setStyleSheet(
-            "background: #8b0000; color: white; font-weight: bold;"
+            "background: #ff4d6a; color: #050709; border: 1px solid #ff4d6a; font-weight: 800;"
         )
 
         top = QHBoxLayout()

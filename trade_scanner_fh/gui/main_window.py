@@ -252,9 +252,10 @@ class MainWindow(QMainWindow):
         toolbar.addWidget(QLabel("  "))
         self.tf_checks: dict[int, QCheckBox] = {}
         _qdr_style = (
-            "QPushButton { background: #3a5f8a; color: #ddd; font-size: 11px; "
-            "padding: 3px 8px; border-radius: 3px; border: 1px solid #4a7aaa; }"
-            "QPushButton:hover { background: #4a7aaa; color: #fff; }"
+            "QPushButton { background: #0f1318; color: #a8bcd4; font-size: 10px; "
+            "font-weight: 800; padding: 3px 8px; border-radius: 2px; "
+            "border: 1px solid #1a2030; }"
+            "QPushButton:hover { background: #141920; color: #e8f0ff; border-color: #00d4ff; }"
         )
         for label, days in [("1D", 1), ("1W", 7), ("1M", 30), ("3M", 90), ("6M", 180)]:
             chk = QCheckBox()
@@ -1030,8 +1031,8 @@ class MainWindow(QMainWindow):
         # --- Pre-transfer summary ---
         self.summary_label = QLabel("")
         self.summary_label.setStyleSheet(
-            "font-size: 12px; padding: 4px; background: #2d2d2d; "
-            "color: #e0e0e0; border-radius: 4px;"
+            "font-size: 12px; padding: 5px 8px; background: #0f1318; "
+            "color: #a8bcd4; border: 1px solid #1a2030; border-radius: 2px;"
         )
         main_layout.addWidget(self.summary_label)
 
@@ -1040,9 +1041,9 @@ class MainWindow(QMainWindow):
 
         self.btn_scan = QPushButton("  Run Scan  ")
         self.btn_scan.setStyleSheet(
-            "QPushButton { background: #2e7d32; color: white; font-size: 14px; "
-            "font-weight: bold; padding: 8px 24px; border-radius: 4px; }"
-            "QPushButton:hover { background: #388e3c; }"
+            "QPushButton { background: #00d4a8; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 20px; border-radius: 2px; border: 1px solid #00d4a8; }"
+            "QPushButton:hover { background: #22e4bb; }"
         )
         self.btn_scan.clicked.connect(self._run_scan)
         btn_bar.addWidget(self.btn_scan)
@@ -1050,9 +1051,9 @@ class MainWindow(QMainWindow):
         self.btn_stop = QPushButton("  Stop  ")
         self.btn_stop.setEnabled(False)
         self.btn_stop.setStyleSheet(
-            "QPushButton { background: #c62828; color: white; font-size: 14px; "
-            "padding: 8px 16px; border-radius: 4px; }"
-            "QPushButton:hover { background: #d32f2f; }"
+            "QPushButton { background: #ff4d6a; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 14px; border-radius: 2px; border: 1px solid #ff4d6a; }"
+            "QPushButton:hover { background: #ff6b82; }"
         )
         self.btn_stop.clicked.connect(self._stop_scan)
         btn_bar.addWidget(self.btn_stop)
@@ -1060,10 +1061,10 @@ class MainWindow(QMainWindow):
         self.btn_export = QPushButton("  Export  ")
         self.btn_export.setEnabled(False)
         self.btn_export.setStyleSheet(
-            "QPushButton { background: #e65100; color: white; font-size: 14px; "
-            "padding: 8px 16px; border-radius: 4px; }"
-            "QPushButton:hover { background: #f57c00; }"
-            "QPushButton:disabled { background: #555; color: #999; }"
+            "QPushButton { background: #f59e0b; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 14px; border-radius: 2px; border: 1px solid #f59e0b; }"
+            "QPushButton:hover { background: #fbbf24; }"
+            "QPushButton:disabled { background: #0a0d12; color: #2a3a50; border-color: #1a2030; }"
         )
         self.btn_export.clicked.connect(self._export_results)
         btn_bar.addWidget(self.btn_export)
@@ -1074,16 +1075,16 @@ class MainWindow(QMainWindow):
         self.btn_excel = QPushButton("  Excel  ")
         self.btn_excel.setEnabled(False)
         self.btn_excel.setStyleSheet(
-            "QPushButton { background: #2e7d32; color: white; font-size: 14px; "
-            "padding: 8px 16px; border-radius: 4px; }"
-            "QPushButton:hover { background: #388e3c; }"
-            "QPushButton:disabled { background: #555; color: #999; }"
+            "QPushButton { background: #00d4a8; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 14px; border-radius: 2px; border: 1px solid #00d4a8; }"
+            "QPushButton:hover { background: #22e4bb; }"
+            "QPushButton:disabled { background: #0a0d12; color: #2a3a50; border-color: #1a2030; }"
         )
         self.btn_excel.clicked.connect(self._excel_export_dialog)
         btn_bar.addWidget(self.btn_excel)
 
-        # HOTKEY toggle — flips the per-row ticker sender on/off. Grey
-        # when off, hot pink with bright purple text when on. Settings
+        # HOTKEY toggle — flips the per-row ticker sender on/off. Neutral
+        # when off, amber when on. Settings
         # for click position / cue / delay / end-sequence live under
         # Settings → Hotkey Settings…. Toggle defaults to off on each
         # launch (see `_hotkey_enabled` in __init__).
@@ -1105,10 +1106,10 @@ class MainWindow(QMainWindow):
         self.btn_send = QPushButton("  Send to Watchlist  ")
         self.btn_send.setEnabled(False)
         self.btn_send.setStyleSheet(
-            "QPushButton { background: #1565c0; color: white; font-size: 14px; "
-            "padding: 8px 24px; border-radius: 4px; }"
-            "QPushButton:hover { background: #1976d2; }"
-            "QPushButton:disabled { background: #555; color: #999; }"
+            "QPushButton { background: #00d4ff; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 20px; border-radius: 2px; border: 1px solid #00d4ff; }"
+            "QPushButton:hover { background: #38e2ff; }"
+            "QPushButton:disabled { background: #0a0d12; color: #2a3a50; border-color: #1a2030; }"
         )
         self.btn_send.clicked.connect(self._send_to_watchlist)
         btn_bar.addWidget(self.btn_send)
@@ -1118,19 +1119,19 @@ class MainWindow(QMainWindow):
         self.btn_stop_send = QPushButton("  Stop Sending  ")
         self.btn_stop_send.setEnabled(False)
         self.btn_stop_send.setStyleSheet(
-            "QPushButton { background: #c62828; color: white; font-size: 14px; "
-            "padding: 8px 16px; border-radius: 4px; }"
-            "QPushButton:hover { background: #d32f2f; }"
-            "QPushButton:disabled { background: #555; color: #999; }"
+            "QPushButton { background: #ff4d6a; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 14px; border-radius: 2px; border: 1px solid #ff4d6a; }"
+            "QPushButton:hover { background: #ff6b82; }"
+            "QPushButton:disabled { background: #0a0d12; color: #2a3a50; border-color: #1a2030; }"
         )
         self.btn_stop_send.clicked.connect(self._stop_sending)
         btn_bar.addWidget(self.btn_stop_send)
 
         self.btn_manual = QPushButton("  Manual Input STW  ")
         self.btn_manual.setStyleSheet(
-            "QPushButton { background: #6a1b9a; color: white; font-size: 14px; "
-            "padding: 8px 24px; border-radius: 4px; }"
-            "QPushButton:hover { background: #7b1fa2; }"
+            "QPushButton { background: #3b82f6; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 20px; border-radius: 2px; border: 1px solid #3b82f6; }"
+            "QPushButton:hover { background: #60a5fa; }"
         )
         self.btn_manual.clicked.connect(self._manual_input_stw)
         btn_bar.addWidget(self.btn_manual)
@@ -1140,20 +1141,20 @@ class MainWindow(QMainWindow):
         # --- Session controls ---
         session_bar = QHBoxLayout()
         self.chk_omit_seen = QCheckBox("Omit previously scanned tickers")
-        self.chk_omit_seen.setStyleSheet("color: #e0e0e0; font-size: 12px;")
+        self.chk_omit_seen.setStyleSheet("color: #a8bcd4; font-size: 11px;")
         session_bar.addWidget(self.chk_omit_seen)
 
         btn_reset_session = QPushButton("Reset Session")
         btn_reset_session.setStyleSheet(
-            "QPushButton { background: #555; color: white; font-size: 11px; "
-            "padding: 4px 12px; border-radius: 3px; }"
-            "QPushButton:hover { background: #666; }"
+            "QPushButton { background: #0f1318; color: #a8bcd4; font-size: 11px; "
+            "padding: 4px 10px; border-radius: 2px; border: 1px solid #1a2030; }"
+            "QPushButton:hover { background: #141920; color: #e8f0ff; }"
         )
         btn_reset_session.clicked.connect(self._reset_session)
         session_bar.addWidget(btn_reset_session)
 
         self.session_label = QLabel("Session: 0 scans, 0 tickers seen")
-        self.session_label.setStyleSheet("color: #aaa; font-size: 11px;")
+        self.session_label.setStyleSheet("color: #5a7090; font-size: 11px;")
         session_bar.addWidget(self.session_label)
         session_bar.addStretch()
         main_layout.addLayout(session_bar)
@@ -1166,7 +1167,7 @@ class MainWindow(QMainWindow):
         # Persistent OHLCV update indicator (right side of status bar)
         self._update_label = QLabel("")
         self._update_label.setStyleSheet(
-            "color: #aaa; font-size: 11px; padding: 0 8px;"
+            "color: #5a7090; font-size: 11px; padding: 0 8px;"
         )
         self.status.addPermanentWidget(self._update_label)
 
@@ -1274,7 +1275,7 @@ class MainWindow(QMainWindow):
         # Start background OHLCV update for all tickers
         self._update_label.setText("OHLCV update: starting...")
         self._update_label.setStyleSheet(
-            "color: #4a90d9; font-size: 11px; padding: 0 8px;"
+            "color: #00d4ff; font-size: 11px; padding: 0 8px;"
         )
         # Filter out blacklisted tickers
         update_syms = [s for s in all_syms if s not in self._blacklist]
@@ -1312,7 +1313,7 @@ class MainWindow(QMainWindow):
             f"OHLCV update: {done}/{total} ({pct}%)"
         )
         self._update_label.setStyleSheet(
-            "color: #4a90d9; font-size: 11px; padding: 0 8px;"
+            "color: #00d4ff; font-size: 11px; padding: 0 8px;"
         )
 
     def _on_ohlcv_error_tickers(self, tickers: list):
@@ -1348,10 +1349,10 @@ class MainWindow(QMainWindow):
             pass
 
         if errors == 0:
-            color = "#4caf50"
+            color = "#00d4a8"
             status = f"OHLCV: {len(self._symbols)} cached, {updated} updated"
         else:
-            color = "#ff9800"
+            color = "#f59e0b"
             status = f"OHLCV: {len(self._symbols)} cached, {updated} updated, {errors} errors"
         self._update_label.setText(status)
         self._update_label.setStyleSheet(
@@ -1800,7 +1801,7 @@ class MainWindow(QMainWindow):
             self.log_panel.write_line("OHLCV refresh stop requested.")
             self._update_label.setText("OHLCV update: stopping...")
             self._update_label.setStyleSheet(
-                "color: #ff9800; font-size: 11px; padding: 0 8px;"
+                "color: #f59e0b; font-size: 11px; padding: 0 8px;"
             )
         else:
             self.log_panel.write_line("No OHLCV refresh is running.")
@@ -1864,8 +1865,8 @@ class MainWindow(QMainWindow):
         btn_row = QHBoxLayout()
         btn_ok = QPushButton("Rebuild")
         btn_ok.setStyleSheet(
-            "QPushButton { background: #2e7d32; color: white; "
-            "font-weight: bold; padding: 6px 18px; border-radius: 3px; }"
+            "QPushButton { background: #00d4a8; color: #050709; "
+            "font-weight: 800; padding: 6px 18px; border-radius: 2px; border: 1px solid #00d4a8; }"
         )
         btn_cancel = QPushButton("Cancel")
         btn_row.addStretch()
@@ -1990,7 +1991,7 @@ class MainWindow(QMainWindow):
         )
         self._update_label.setText(f"Missing tickers: 0/{len(missing)}")
         self._update_label.setStyleSheet(
-            "color: #4a90d9; font-size: 11px; padding: 0 8px;"
+            "color: #00d4ff; font-size: 11px; padding: 0 8px;"
         )
         self._update_worker = UpdateWorker(
             missing,
@@ -3100,20 +3101,19 @@ class MainWindow(QMainWindow):
 
     def _apply_hotkey_button_style(self, on: bool) -> None:
         """Repaint the HOTKEY button to reflect its on/off state.
-        Off = neutral grey; on = hot pink with bright purple bold text
-        per the user's spec."""
+        Off = neutral terminal button; on = amber active-state button."""
         if on:
             self.btn_hotkey.setStyleSheet(
-                "QPushButton { background: #ff1493; color: #c000ff; "
-                "font-size: 14px; font-weight: bold; padding: 8px 16px; "
-                "border-radius: 4px; }"
-                "QPushButton:hover { background: #ff5bbf; }"
+                "QPushButton { background: #f59e0b; color: #050709; "
+                "font-size: 12px; font-weight: 800; padding: 6px 14px; "
+                "border-radius: 2px; border: 1px solid #f59e0b; }"
+                "QPushButton:hover { background: #fbbf24; }"
             )
         else:
             self.btn_hotkey.setStyleSheet(
-                "QPushButton { background: #555; color: #ddd; "
-                "font-size: 14px; padding: 8px 16px; border-radius: 4px; }"
-                "QPushButton:hover { background: #666; }"
+                "QPushButton { background: #0f1318; color: #a8bcd4; "
+                "font-size: 12px; font-weight: 800; padding: 6px 14px; border-radius: 2px; border: 1px solid #1a2030; }"
+                "QPushButton:hover { background: #141920; color: #e8f0ff; }"
             )
 
     def _toggle_hotkey(self) -> None:
@@ -3679,13 +3679,13 @@ class MainWindow(QMainWindow):
             return row
 
         layout.addLayout(_make_row(
-            "Both sources",  rep["both"],         "#4caf50"))
+            "Both sources",  rep["both"],         "#00d4a8"))
         layout.addLayout(_make_row(
-            "Zacks only",    rep["zacks_only"],   "#2196f3"))
+            "Zacks only",    rep["zacks_only"],   "#00d4ff"))
         layout.addLayout(_make_row(
-            "Finnhub only",  rep["finnhub_only"], "#ff9800"))
+            "Finnhub only",  rep["finnhub_only"], "#f59e0b"))
         layout.addLayout(_make_row(
-            "Neither (gap)", rep["neither"],      "#f44336"))
+            "Neither (gap)", rep["neither"],      "#ff4d6a"))
 
         btn_row = QHBoxLayout()
         btn_row.addStretch()
@@ -3763,7 +3763,7 @@ class MainWindow(QMainWindow):
 
         if not findings:
             layout.addWidget(QLabel(
-                f"<span style='color:#4caf50'>● PASS</span> — "
+                f"<span style='color:#00d4a8'>● PASS</span> — "
                 f"{len(df):,} rows, no integrity findings."
             ))
         else:
@@ -3778,7 +3778,7 @@ class MainWindow(QMainWindow):
             layout.addWidget(summary)
 
             for f in findings:
-                color = "#f44336" if f.severity == "error" else "#ff9800"
+                color = "#ff4d6a" if f.severity == "error" else "#f59e0b"
                 row_lbl = QLabel(
                     f"<span style='color:{color}'>● </span>"
                     f"<b>{f.check}</b> ({f.severity}, "
@@ -4464,8 +4464,8 @@ class MainWindow(QMainWindow):
             try:
                 self.summary_label.setText("  Scan crashed — see log  ")
                 self.summary_label.setStyleSheet(
-                    "font-size: 13px; padding: 6px; background: #c0392b; "
-                    "color: white; border-radius: 4px; font-weight: bold;"
+                    "font-size: 12px; padding: 6px 8px; background: #ff4d6a; "
+                    "color: #050709; border: 1px solid #ff4d6a; border-radius: 2px; font-weight: 800;"
                 )
             except Exception:
                 pass
@@ -4564,15 +4564,15 @@ class MainWindow(QMainWindow):
                            f"{total_unique} unique across {len(self._period_order)} periods")
             else:
                 summary = f"{n_pass} tickers passed all filters, 0 data warnings"
-            color = "#4caf50"
+            color = "#00d4a8"
         else:
             summary = f"{n_pass} tickers passed, {n_err} had errors -- review log"
-            color = "#ff9800"
+            color = "#f59e0b"
 
         self.summary_label.setText(f"  {summary}  ")
         self.summary_label.setStyleSheet(
-            f"font-size: 13px; padding: 6px; background: {color}; "
-            "color: white; border-radius: 4px; font-weight: bold;"
+            f"font-size: 12px; padding: 6px 8px; background: {color}; "
+            "color: #050709; border: 1px solid #1a2030; border-radius: 2px; font-weight: 800;"
         )
 
         self.status.showMessage(
@@ -5683,13 +5683,13 @@ class MainWindow(QMainWindow):
         btn_row = QHBoxLayout()
         btn_go = QPushButton("  Send  ")
         btn_go.setStyleSheet(
-            "QPushButton { background: #6a1b9a; color: white; font-size: 13px; "
-            "font-weight: bold; padding: 8px 24px; border-radius: 4px; }"
+            "QPushButton { background: #00d4ff; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 18px; border-radius: 2px; border: 1px solid #00d4ff; }"
         )
         btn_cancel = QPushButton("  Cancel  ")
         btn_cancel.setStyleSheet(
-            "QPushButton { background: #555; color: white; font-size: 13px; "
-            "padding: 8px 24px; border-radius: 4px; }"
+            "QPushButton { background: #0f1318; color: #a8bcd4; font-size: 12px; "
+            "padding: 6px 18px; border-radius: 2px; border: 1px solid #1a2030; }"
         )
         btn_row.addWidget(btn_go)
         btn_row.addWidget(btn_cancel)
@@ -6239,7 +6239,7 @@ def _build_cookie_textedit_widget(
 
     masked_style = (
         "QTextEdit { color: transparent; selection-color: transparent;"
-        " selection-background-color: #555; }"
+        " selection-background-color: #1a2840; }"
     )
 
     def apply_visibility(show: bool):
@@ -6373,6 +6373,7 @@ def main():
         )
 
     app = QApplication(sys.argv)
+    app.setFont(QFont("Aptos", 10))
     app.setStyleSheet(DARK_STYLESHEET)
 
     # First-launch only: ask for the Finnhub API key, then the Zacks

@@ -77,20 +77,20 @@ class PositionCaptureCountdown(QDialog):
         )
         instruction.setAlignment(Qt.AlignmentFlag.AlignCenter)
         instruction.setWordWrap(True)
-        instruction.setStyleSheet("color: #e0e0e0; font-size: 12px;")
+        instruction.setStyleSheet("color: #e8f0ff; font-size: 12px;")
         layout.addWidget(instruction)
 
         self.lbl_count = QLabel(str(self._remaining))
         self.lbl_count.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.lbl_count.setStyleSheet(
-            "color: #ff1493; font-size: 56px; font-weight: bold;"
+            "color: #f59e0b; font-size: 56px; font-weight: bold;"
         )
         layout.addWidget(self.lbl_count)
 
         self.lbl_pos = QLabel("Cursor: —")
         self.lbl_pos.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.lbl_pos.setStyleSheet(
-            "color: #c000ff; font-size: 13px; font-family: Consolas, "
+            "color: #00d4ff; font-size: 13px; font-family: Consolas, "
             "'Courier New', monospace; font-weight: bold;"
         )
         layout.addWidget(self.lbl_pos)
@@ -226,7 +226,7 @@ class HotkeySettingsDialog(QDialog):
             "position, types the row's ticker, then presses the end key."
         )
         intro.setWordWrap(True)
-        intro.setStyleSheet("color: #aaa; font-size: 11px;")
+        intro.setStyleSheet("color: #5a7090; font-size: 11px;")
         layout.addWidget(intro)
 
         grid = QGridLayout()
@@ -238,7 +238,7 @@ class HotkeySettingsDialog(QDialog):
         grid.addWidget(QLabel("Click position:"), 0, 0)
         self.lbl_position = QLabel(self._position_text())
         self.lbl_position.setStyleSheet(
-            "color: #e0e0e0; font-family: Consolas, 'Courier New', "
+            "color: #e8f0ff; font-family: 'JetBrains Mono', Consolas, "
             "monospace;"
         )
         grid.addWidget(self.lbl_position, 0, 1)
@@ -296,7 +296,7 @@ class HotkeySettingsDialog(QDialog):
         grid.addWidget(QLabel("Return click position:"), 4, 0)
         self.lbl_return = QLabel(self._return_text())
         self.lbl_return.setStyleSheet(
-            "color: #e0e0e0; font-family: Consolas, 'Courier New', "
+            "color: #e8f0ff; font-family: 'JetBrains Mono', Consolas, "
             "monospace;"
         )
         grid.addWidget(self.lbl_return, 4, 1)
@@ -426,15 +426,15 @@ class HotkeySettingsDialog(QDialog):
             active_label = self.lbl_return
             other_label = self.lbl_position
 
-        # Pink/purple styling on the active label so it's obvious
+        # Amber/cyan terminal styling on the active label so it's obvious
         # which capture is in flight. Other label stays in default
         # style + shows its current value (no overlap).
         active_label.setStyleSheet(
-            "color: #ff1493; font-family: Consolas, 'Courier New', "
+            "color: #f59e0b; font-family: 'JetBrains Mono', Consolas, "
             "monospace; font-weight: bold;"
         )
         other_label.setStyleSheet(
-            "color: #e0e0e0; font-family: Consolas, 'Courier New', "
+            "color: #e8f0ff; font-family: 'JetBrains Mono', Consolas, "
             "monospace;"
         )
 
@@ -493,11 +493,11 @@ class HotkeySettingsDialog(QDialog):
             b.setEnabled(True)
         # Restore default styling and re-render both labels from state.
         self.lbl_position.setStyleSheet(
-            "color: #e0e0e0; font-family: Consolas, 'Courier New', "
+            "color: #e8f0ff; font-family: 'JetBrains Mono', Consolas, "
             "monospace;"
         )
         self.lbl_return.setStyleSheet(
-            "color: #e0e0e0; font-family: Consolas, 'Courier New', "
+            "color: #e8f0ff; font-family: 'JetBrains Mono', Consolas, "
             "monospace;"
         )
         self.lbl_position.setText(self._position_text())

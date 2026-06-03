@@ -37,7 +37,7 @@ class WatchlistDialog(QDialog):
         layout.setContentsMargins(40, 30, 40, 30)
 
         title = QLabel(f"Send {n_tickers} Tickers to Watchlist")
-        title.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
+        title.setFont(QFont("Aptos", 13, QFont.Weight.Bold))
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
@@ -120,7 +120,7 @@ class WatchlistDialog(QDialog):
             "3. The scanner will type each ticker and press the confirm key\n"
             "4. Press Escape or move mouse to top-left corner to abort"
         )
-        instr.setStyleSheet("color: #aaa; font-style: italic;")
+        instr.setStyleSheet("color: #5a7090; font-style: italic;")
         layout.addWidget(instr)
 
         layout.addWidget(QLabel(""))
@@ -129,16 +129,18 @@ class WatchlistDialog(QDialog):
         btn_row = QHBoxLayout()
         btn_start = QPushButton("  Start  ")
         btn_start.setStyleSheet(
-            "QPushButton { background: #2e7d32; color: white; font-size: 13px; "
-            "font-weight: bold; padding: 8px 24px; border-radius: 4px; }"
+            "QPushButton { background: #00d4a8; color: #050709; font-size: 12px; "
+            "font-weight: 800; padding: 6px 18px; border-radius: 2px; border: 1px solid #00d4a8; }"
+            "QPushButton:hover { background: #22e4bb; }"
         )
         btn_start.clicked.connect(self._on_start)
         btn_row.addWidget(btn_start)
 
         btn_cancel = QPushButton("  Cancel  ")
         btn_cancel.setStyleSheet(
-            "QPushButton { background: #555; color: white; font-size: 13px; "
-            "padding: 8px 24px; border-radius: 4px; }"
+            "QPushButton { background: #0f1318; color: #a8bcd4; font-size: 12px; "
+            "padding: 6px 18px; border-radius: 2px; border: 1px solid #1a2030; }"
+            "QPushButton:hover { background: #141920; color: #e8f0ff; }"
         )
         btn_cancel.clicked.connect(self._on_cancel)
         btn_row.addWidget(btn_cancel)
@@ -214,7 +216,7 @@ class ExcelExportDialog(QDialog):
         layout.setContentsMargins(20, 18, 20, 18)
 
         title = QLabel("Export Results")
-        title.setFont(QFont("Segoe UI", 13, QFont.Weight.Bold))
+        title.setFont(QFont("Aptos", 12, QFont.Weight.Bold))
         layout.addWidget(title)
 
         # --- Format + News toggle ---
@@ -265,7 +267,7 @@ class ExcelExportDialog(QDialog):
                 "single file with a Period column added at the front."
             )
             blurb.setWordWrap(True)
-            blurb.setStyleSheet("color: #aaa; font-style: italic;")
+            blurb.setStyleSheet("color: #5a7090; font-style: italic;")
             pv.addWidget(blurb)
 
             shortcut_p = QHBoxLayout()
@@ -491,7 +493,7 @@ class SequencedRunDialog(QDialog):
         layout.setContentsMargins(20, 18, 20, 18)
 
         title = QLabel("Sequenced Run")
-        title.setFont(QFont("Segoe UI", 13, QFont.Weight.Bold))
+        title.setFont(QFont("Aptos", 12, QFont.Weight.Bold))
         layout.addWidget(title)
 
         blurb = QLabel(
@@ -502,7 +504,7 @@ class SequencedRunDialog(QDialog):
             "if smaller than the chunk size."
         )
         blurb.setWordWrap(True)
-        blurb.setStyleSheet("color: #aaa; font-style: italic;")
+        blurb.setStyleSheet("color: #5a7090; font-style: italic;")
         layout.addWidget(blurb)
 
         # --- Date range ---
@@ -625,7 +627,7 @@ class ColumnsManagerDialog(QDialog):
         layout.setContentsMargins(14, 12, 14, 12)
 
         title = QLabel("Columns")
-        title.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
+        title.setFont(QFont("Aptos", 11, QFont.Weight.Bold))
         layout.addWidget(title)
 
         blurb = QLabel(
@@ -634,7 +636,7 @@ class ColumnsManagerDialog(QDialog):
             "to hide. Saved with the active preset."
         )
         blurb.setWordWrap(True)
-        blurb.setStyleSheet("color: #aaa; font-style: italic;")
+        blurb.setStyleSheet("color: #5a7090; font-style: italic;")
         layout.addWidget(blurb)
 
         self._list = QListWidget(self)
