@@ -1,0 +1,25 @@
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE files
+.idea/
+.vscode/
+
+# Logs / runtime data
+*.log
+logs/
+trade_scanner_fh/scanner_data/logs/
+
+# Secrets / local config
+.env
+.env.*
+*.key
+*.pem
